@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Radzie Bagallon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FFFFFF;
+      --text: #111827;
+      --muted: #6B7280;
+      --accent: #2563EB;
+      --rule: #E5E7EB;
+      --tag-bg: #F3F4F6;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0F172A;
+        --text: #E2E8F0;
+        --muted: #94A3B8;
+        --accent: #60A5FA;
+        --rule: #1E293B;
+        --tag-bg: #1E293B;
+        color-scheme: dark;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #0F172A;
+      --text: #E2E8F0;
+      --muted: #94A3B8;
+      --accent: #60A5FA;
+      --rule: #1E293B;
+      --tag-bg: #1E293B;
+      color-scheme: dark;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.65;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 64px 24px 80px;
+    }
+
+    /* ── Header ── */
+    .header { margin-bottom: 52px; }
+
+    .name {
+      font-size: clamp(2rem, 6vw, 2.75rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      font-size: 0.875rem;
+    }
+
+    .links a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .links a:hover { border-bottom-color: var(--accent); }
+
+    /* ── Sections ── */
+    section { margin-bottom: 48px; }
+
+    .section-title {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 1.125rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 24px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* ── Projects ── */
+    .project {
+      margin-bottom: 28px;
+      padding-left: 14px;
+      border-left: 2px solid var(--accent);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 2px 12px;
+      margin-bottom: 5px;
+    }
+
+    .project-title {
+      font-weight: 700;
+      font-size: 0.9375rem;
+    }
+
+    .project-meta {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .project-desc {
+      font-size: 0.9375rem;
+      color: var(--text);
+      margin-bottom: 10px;
+      max-width: 58ch;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: var(--tag-bg);
+      padding: 2px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Skills ── */
+    .skill-row {
+      font-size: 0.9375rem;
+      margin-bottom: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 6px;
+    }
+
+    .skill-label {
+      font-weight: 600;
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+
+    .skill-val { color: var(--muted); }
+
+    /* ── Education ── */
+    .edu-entry { margin-bottom: 18px; }
+
+    .edu-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 2px 12px;
+    }
+
+    .edu-name { font-weight: 600; font-size: 0.9375rem; }
+    .edu-date { font-size: 0.8125rem; color: var(--muted); }
+    .edu-detail { font-size: 0.875rem; color: var(--muted); margin-top: 2px; }
+    .edu-courses { font-size: 0.8125rem; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding-top: 20px;
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 480px) {
+      .container { padding: 48px 20px 60px; }
+      .skill-label { min-width: 72px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header class="header">
+    <h1 class="name">Radzie Bagallon</h1>
+    <p class="tagline">CS student · Data Science · Mapúa University, Manila</p>
+    <div class="links">
+      <a href="mailto:rrbagallon@mymail.mapua.edu.ph">rrbagallon@mymail.mapua.edu.ph</a>
+      <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
+      <a href="resume.pdf" target="_blank">Resume</a>
+    </div>
+  </header>
+
+  <section>
+    <h2 class="section-title">Work</h2>
+
+    <div class="project">
+      <div class="project-header">
+        <span class="project-title">CNN for E-Waste Laptop Components</span>
+        <span class="project-meta">Undergraduate Thesis · 2024–2025</span>
+      </div>
+      <p class="project-desc">Benchmarked DenseNet-121 and MobileNet-V2 on a 643-image, 5-class dataset. When every model scored perfectly on the test set, I audited for data leakage, found near-duplicate images across splits, and built a 100-image out-of-distribution set to get honest numbers.</p>
+      <div class="tags">
+        <span class="tag">67–71% OOD accuracy</span>
+        <span class="tag">9.3× fewer FLOPs (MobileNet-V2)</span>
+        <span class="tag">3 seeds · Holm correction</span>
+        <span class="tag">TensorFlow · Colab T4</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-header">
+        <span class="project-title">OJT Masterlist Data Cleaning Pipeline</span>
+        <span class="project-meta">Personal · 2025</span>
+      </div>
+      <p class="project-desc">Python and pandas scripts to ingest, clean and standardize a messy university OJT spreadsheet. Used regular expressions to extract target cities from inconsistent address strings and exported structured multi-sheet workbooks.</p>
+      <div class="tags">
+        <span class="tag">Python · pandas · regex</span>
+        <span class="tag">pathlib · xlsx</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-header">
+        <span class="project-title">Bizventory Smart Inventory System</span>
+        <span class="project-meta">Capstone · 2025</span>
+      </div>
+      <p class="project-desc">Built a Firebase inventory system with real-time tracking of 100+ product records and a sales and stock trends dashboard, with four teammates in Agile sprints.</p>
+      <div class="tags">
+        <span class="tag">Firebase</span>
+        <span class="tag">Agile · Jira</span>
+        <span class="tag">20-person user test</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-header">
+        <span class="project-title">Vehicle Detection with YOLO</span>
+        <span class="project-meta">Group activity · 2025</span>
+      </div>
+      <p class="project-desc">Built and annotated a custom 5-class vehicle dataset and fine-tuned YOLO on Colab. Compared three training configurations on mAP50, precision, recall and F1; best config reached 0.57 mAP50.</p>
+      <div class="tags">
+        <span class="tag">0.57 mAP50</span>
+        <span class="tag">Ultralytics YOLO</span>
+        <span class="tag">pandas · Colab T4</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Skills</h2>
+    <div class="skill-row">
+      <span class="skill-label">Data</span>
+      <span class="skill-val">ETL, cleaning and validation, regex parsing, Matplotlib, Seaborn</span>
+    </div>
+    <div class="skill-row">
+      <span class="skill-label">Code</span>
+      <span class="skill-val">Python — Intermediate · SQL (MS SQL Server) — Intermediate · C — Basic · MongoDB — Basic</span>
+    </div>
+    <div class="skill-row">
+      <span class="skill-label">ML</span>
+      <span class="skill-val">CNNs (TensorFlow/Keras), CART decision trees, sentiment analysis, bootstrap hypothesis testing</span>
+    </div>
+    <div class="skill-row">
+      <span class="skill-label">Tools</span>
+      <span class="skill-val">Firebase, Jira, Google Colab, Jupyter, Agile/SDLC</span>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-entry">
+      <div class="edu-row">
+        <span class="edu-name">Mapúa University</span>
+        <span class="edu-date">2023 – Expected 2027</span>
+      </div>
+      <div class="edu-detail">BS Computer Science, Specialization in Data Science · Makati</div>
+      <div class="edu-courses">Data Warehousing and Mining · Introduction to Data Science · Information Management · Algorithms and Complexity · Numerical Methods · Parallel and Distributed Computing</div>
+    </div>
+    <div class="edu-entry">
+      <div class="edu-row">
+        <span class="edu-name">STI College Sta. Mesa</span>
+        <span class="edu-date">2021 – 2022</span>
+      </div>
+      <div class="edu-detail">Senior High School, STEM · Manila</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Radzie Bagallon · <a href="mailto:rrbagallon@mymail.mapua.edu.ph">rrbagallon@mymail.mapua.edu.ph</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
